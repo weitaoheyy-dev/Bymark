@@ -126,7 +126,7 @@ const iconAssets = await page.evaluate(async () =>
 check(iconAssets.every(({ ok }) => ok), '所有高清图标资源均可访问', JSON.stringify(iconAssets))
 const defaultAvatarCornerAlpha = await page.evaluate(async () => {
   const image = new Image()
-  image.src = '/default-avatar.png'
+  image.src = './default-avatar.png'
   await image.decode()
   const canvas = document.createElement('canvas')
   canvas.width = image.naturalWidth
@@ -202,7 +202,7 @@ check((await page.getByLabel('昵称').inputValue()) === '失效样本', '可将
 await page.getByRole('tab', { name: '内容' }).click()
 check((await page.locator('#bymark-title').inputValue()) === 'Bymark｜留印', '恢复初始化配置会还原作品标题')
 check((await page.getByLabel('正文', { exact: true }).inputValue()).startsWith('留印 | Bymark'), '恢复初始化配置会还原项目默认文字')
-check((await page.locator('.post-avatar img:not(.pagination-probe *)').getAttribute('src')) === '/default-avatar.png', '恢复初始化配置会还原项目默认头像')
+check((await page.locator('.post-avatar img:not(.pagination-probe *)').getAttribute('src')) === './default-avatar.png', '恢复初始化配置会还原项目默认头像')
 check(
   await page.locator('.app-shell').evaluate((node) => node.classList.contains('ui-dark')),
   '恢复初始化配置会还原内置主题',
@@ -223,7 +223,7 @@ check(
   '页面品牌图标与网站 ico 使用同一图案',
 )
 check(
-  (await page.locator('.post-avatar img:not(.pagination-probe *)').getAttribute('src')) === '/default-avatar.png',
+  (await page.locator('.post-avatar img:not(.pagination-probe *)').getAttribute('src')) === './default-avatar.png',
   '首次打开使用项目内置头像，而非依赖浏览器本地数据',
 )
 check(await page.locator('.export-button').isVisible(), '导出入口首屏可见')
@@ -1543,7 +1543,7 @@ await page.locator('.post-avatar img:not(.pagination-probe *)').waitFor({ state:
 check((await page.locator('.post-avatar img:not(.pagination-probe *)').count()) === 1, '刷新后恢复本地记忆头像')
 await page.getByRole('button', { name: '恢复默认头像' }).click()
 check(
-  (await page.locator('.post-avatar img:not(.pagination-probe *)').getAttribute('src')) === '/default-avatar.png',
+  (await page.locator('.post-avatar img:not(.pagination-probe *)').getAttribute('src')) === './default-avatar.png',
   '头像删除后恢复项目内置头像',
 )
 // The UI updates before its queued IndexedDB write completes. Reload only
@@ -1557,7 +1557,7 @@ await page.waitForFunction(async () => {
   try {
     return await new Promise((resolve, reject) => {
       const request = database.transaction('assets', 'readonly').objectStore('assets').get('bymark-avatar-v1')
-      request.onsuccess = () => resolve(request.result === '/default-avatar.png')
+      request.onsuccess = () => resolve(request.result === './default-avatar.png')
       request.onerror = () => reject(request.error)
     })
   } finally {
@@ -1567,10 +1567,10 @@ await page.waitForFunction(async () => {
 await page.reload({ waitUntil: 'domcontentloaded' })
 await waitForWorkspace(page)
 await page.waitForFunction(() =>
-  document.querySelector('.post-avatar img:not(.pagination-probe *)')?.getAttribute('src') === '/default-avatar.png',
+  document.querySelector('.post-avatar img:not(.pagination-probe *)')?.getAttribute('src') === './default-avatar.png',
 )
 check(
-  (await page.locator('.post-avatar img:not(.pagination-probe *)').getAttribute('src')) === '/default-avatar.png',
+  (await page.locator('.post-avatar img:not(.pagination-probe *)').getAttribute('src')) === './default-avatar.png',
   '恢复默认头像后刷新保持项目内置头像',
 )
 check(await page.evaluate(() => localStorage.getItem('bymark-avatar-v1') === null), '删除头像后清理本地记忆')
