@@ -102,19 +102,19 @@ check(
 await page.screenshot({ path: path.join(artifacts, 'desktop-initial.png') })
 
 check(
-  (await page.locator('link[rel="icon"][href="/favicon.ico"]').count()) === 1,
+  (await page.locator('link[rel="icon"][href="./favicon.ico"]').count()) === 1,
   '标签页图标已指向 favicon.ico',
 )
 check(
-  (await page.locator('link[rel="apple-touch-icon"][href="/apple-touch-icon.png"]').count()) === 1,
+  (await page.locator('link[rel="apple-touch-icon"][href="./apple-touch-icon.png"]').count()) === 1,
   'iPhone 主屏图标已配置',
 )
 const iconAssets = await page.evaluate(async () =>
   Promise.all(
-    ['/favicon.ico', '/favicon-32.png', '/apple-touch-icon.png', '/icon-192.png', '/icon-512.png', '/site.webmanifest'].map(
+    ['./favicon.ico', './favicon-32.png', './apple-touch-icon.png', './icon-192.png', './icon-512.png', './site.webmanifest'].map(
       async (asset) => {
         try {
-          const response = await fetch(asset === '/favicon.ico' ? `${asset}?qa=1` : asset, { cache: 'no-store' })
+          const response = await fetch(asset === './favicon.ico' ? `${asset}?qa=1` : asset, { cache: 'no-store' })
           return { asset, ok: response.ok, status: response.status }
         } catch (error) {
           return { asset, ok: false, error: String(error) }
