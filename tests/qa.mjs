@@ -219,7 +219,7 @@ check((await page.title()) === '留印', '页面标题正确')
 check(await page.locator('.brand-lockup').isVisible(), '品牌与核心用途首屏可见')
 check((await page.locator('.brand-lockup h1').innerText()) === '留印', '桌面品牌标题保持单一且简洁')
 check(
-  (await page.locator('img.brand-mark').getAttribute('src')) === '/icon-192.png',
+  (await page.locator('img.brand-mark').getAttribute('src')) === './icon-192.png',
   '页面品牌图标与网站 ico 使用同一图案',
 )
 check(
