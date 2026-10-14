@@ -569,7 +569,7 @@ export const EditorPanel = defineComponent(
     return () => (
       <aside id="mobile-editor-panel" class="editor-panel">
         <header class="brand-lockup">
-          <img class="brand-mark" src="/icon-192.png" width="32" height="32" alt="留印图标" />
+          <img class="brand-mark" src="./icon-192.png" width="32" height="32" alt="留印图标" />
           <div class="brand-copy">
             <h1>留印</h1>
             <UpdateIndicator />

@@ -91,7 +91,7 @@ export interface BymarkState {
 }
 
 /** 新访客首次打开时使用的内置作者头像。 */
-export const DEFAULT_AVATAR = '/default-avatar.png'
+export const DEFAULT_AVATAR = './default-avatar.png'
 
 /** 内置导出的系统默认值；恢复初始化配置时也会一并恢复。 */
 export const DEFAULT_EXPORT_SETTINGS = {

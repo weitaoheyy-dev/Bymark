@@ -1238,7 +1238,7 @@ export default defineComponent(() => {
       ]}
       >
         <header class="mobile-brand-lockup">
-          <img class="mobile-brand-mark" src="/icon-192.png" width="32" height="32" alt="留印图标" />
+          <img class="mobile-brand-mark" src="./icon-192.png" width="32" height="32" alt="留印图标" />
           <div class="brand-copy">
             <h1>留印</h1>
             <UpdateIndicator />
